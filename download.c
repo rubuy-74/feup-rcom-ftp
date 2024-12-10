@@ -51,7 +51,7 @@ typedef struct URL {
 #define REGEX_NOPASS "ftp://([^@]+)@([^:]+):([0-9]+)/(.+)"
 // ftp://myname@host.dom:21/%2Fetc/motd
 
-#define REGEX_NOPORT "ftp://([^:]+):([^@]+)@([^:]+)/(.+)"
+#define REGEX_NOPORT "ftp://([^:]+):([^@]+)@([^/]+)/(.+)"
 // ftp://myname:rubem@host.dom/%2Fetc/motd
 
 #define REGEX_ONLYPORT "ftp://([^:]+):([0-9]+)/(.+)"
@@ -247,6 +247,7 @@ int ftp_create_socket(char *host, char *port) {
 }
 
 int ftp_read_control(int sockfd,char *buffer) {
+  sleep(2);
   char buf[MAX_BUF_SIZE];
   read(sockfd,&buf,MAX_BUF_SIZE);
   buf[strcspn(buf,"\n")] = '\0';
