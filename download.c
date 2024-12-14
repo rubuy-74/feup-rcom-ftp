@@ -136,18 +136,8 @@ int ftp_parse(URL *url, char *input) {
 
   if (regexec(&regex,input,group_size,group_array,0) == 0) {
     printf("match: onlyport\n");
-    printf("username please (uwu) [empty = anonymous]: ");
-    fgets(url->username,MAX_STRING_SIZE,stdin);
-    url->username[strlen(url->username)-1] = 0;
-    if(strlen(url->username) == 0) {
-      sprintf(url->username,"%s","anonymous");
-    }
-    printf("password please (uwu) [empty = anonymous]: ");
-    fgets(url->password,MAX_STRING_SIZE,stdin);
-    url->password[strlen(url->password)-1] = 0;
-    if(strlen(url->password) == 0) {
-      sprintf(url->password,"%s","anonymous");
-    }
+    sprintf(url->username,"%s","anonymous");
+    sprintf(url->password,"%s","anonymous");
     sprintf(url->host,"%s",strndup(input + group_array[1].rm_so,group_array[1].rm_eo - group_array[1].rm_so));
     sprintf(url->port,"%s",strndup(input + group_array[2].rm_so,group_array[2].rm_eo - group_array[2].rm_so));
     sprintf(url->path,"%s",strndup(input + group_array[3].rm_so,group_array[3].rm_eo - group_array[3].rm_so));
@@ -165,12 +155,7 @@ int ftp_parse(URL *url, char *input) {
   if (regexec(&regex,input,group_size,group_array,0) == 0) {
     printf("match: onlyname\n");
     sprintf(url->username,"%s",strndup(input + group_array[1].rm_so,group_array[1].rm_eo - group_array[1].rm_so));
-    printf("password please (uwu) [empty = anonymous]: ");
-    fgets(url->password,MAX_STRING_SIZE,stdin);
-    url->password[strlen(url->password)-1] = 0;
-    if(strlen(url->password) == 0) {
-      sprintf(url->password,"%s","anonymous");
-    }
+    sprintf(url->password,"%s","anonymous");
     sprintf(url->host,"%s",strndup(input + group_array[2].rm_so,group_array[2].rm_eo - group_array[2].rm_so));
     sprintf(url->port,"%s","21");
     //sprintf(url->port,"%s",strndup(input + group_array[2].rm_so,group_array[2].rm_eo - group_array[2].rm_so));
@@ -188,18 +173,8 @@ int ftp_parse(URL *url, char *input) {
 
   if (regexec(&regex,input,group_size,group_array,0) == 0) {
     printf("match: onlyhost\n");
-    printf("username please (uwu) [empty = anonymous]: ");
-    fgets(url->username,MAX_STRING_SIZE,stdin);
-    url->username[strlen(url->username)-1] = 0;
-    if(strlen(url->username) == 0) {
-      sprintf(url->username,"%s","anonymous");
-    }
-    printf("password please (uwu) [empty = anonymous]: ");
-    fgets(url->password,MAX_STRING_SIZE,stdin);
-    url->password[strlen(url->password)-1] = 0;
-    if(strlen(url->password) == 0) {
-      sprintf(url->password,"%s","anonymous");
-    }
+    sprintf(url->username,"%s","anonymous");
+    sprintf(url->password,"%s","anonymous");
     sprintf(url->host,"%s",strndup(input + group_array[1].rm_so,group_array[1].rm_eo - group_array[1].rm_so));
     sprintf(url->port,"%s","21");
     //sprintf(url->port,"%s",strndup(input + group_array[2].rm_so,group_array[2].rm_eo - group_array[2].rm_so));
